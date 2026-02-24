@@ -5,6 +5,7 @@ class Login:
         self.password_input = page.get_by_role("textbox", name="Password")
         self.login_button = page.get_by_role("button", name="Login")
         self.breadcrumb = page.get_by_text("Login Page", exact=True)
+        self.alert = page.get_by_role("alert")
 
     def navigate(self):
         self.page.goto("https://practice.expandtesting.com/login")
