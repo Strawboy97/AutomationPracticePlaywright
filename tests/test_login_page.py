@@ -44,3 +44,22 @@ def test_invalid_username_login(page: Page,
 
     # Ensure the user remains on the login page
     expect(page).to_have_url('https://practice.expandtesting.com/login')
+
+def test_invalid_password_login(page: Page,
+                                login_page: Login,
+                                secure_page: Secure):
+
+    # Navigate to Login Page
+    login_page.navigate()
+
+    # Verify that the login page is displayed successfully.
+    expect(login_page.breadcrumb).to_be_visible()
+
+    # Input Incorrect Username and Login
+    login_page.login('practice', 'Password!')
+
+    # Verify that an error message 'Your username is invalid!' is displayed.
+    expect(login_page.alert).to_have_text('Your password is invalid!')
+
+    # Ensure the user remains on the login page
+    expect(page).to_have_url('https://practice.expandtesting.com/login')
